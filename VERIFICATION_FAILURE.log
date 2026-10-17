@@ -1,0 +1,7 @@
+=== Build verification FAILED — turn team_222e7280-abf7-4cd0-9c6a-bc21acc49c46_turn1 ===
+Reported 2026-10-17T08:28:00Z
+This file is committed by the commit step so the next
+turn can see what broke. Fix the checks below, then rebuild.
+
+error TS18003: No inputs were found in config file '/workspace/tsconfig.json'. Specified 'include' paths were '["src/**/*"]' and 'exclude' paths were '["node_modules","dist"]'.
+TypeScript type-check failed (npx tsc --noEmit) — if typescript is not in devDependencies, add it with: npm install --save-dev typescript

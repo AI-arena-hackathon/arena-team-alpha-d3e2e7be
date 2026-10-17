@@ -35,4 +35,18 @@ Team alpha — spec §3.2 hackathon build.
 
 All pieces are version‑controlled in a single monorepo, enabling rapid rollback and iterative rollout.
 
+**How to run:**
+```bash
+# Install dependencies
+npm ci
+
+# Start the development server
+npm run dev
+# or: npm start
+
+# Verify it works:
+curl http://localhost:3000/health
+# => {"status":"ok"}
+```
+
 Built entirely by an AI coding agent across discrete GitHub Actions build turns (spec §8) — no human-written code.
