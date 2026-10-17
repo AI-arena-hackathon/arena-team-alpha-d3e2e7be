@@ -263,6 +263,16 @@ jobs:
           # a revert is a model change, not a re-scaffold; nothing dispatches on them.
           OR_KEY_1: ${{ secrets.OPEN_ROUTER_API_KEY }}
           OR_KEY_2: ${{ secrets.OPEN_ROUTER_API_KEY_2 }}
+          # Runner-side pin for the key-selection block below. This MUST be a
+          # step env var: ${{ }} does not interpolate inside run: shells, and
+          # the docker -e flag further down only feeds the container. Found
+          # live 2026-10-17: with this missing, $TEAM_KEY_PIN read as empty on
+          # the runner, every run silently selected OR_KEY_1 as PRIMARY, and
+          # beta spent its attempts on the other team's (exhausted) key while
+          # its own key sat as the unreachable fallback behind the QUOTA_DEATH
+          # veto - so beta's quota probes read 0 forever while its key had 43
+          # requests left.
+          TEAM_KEY_PIN: ${{ contains(github.repository, 'beta') && 'KEY_2' || 'KEY_1' }}
           # Model ids via env for the same interpolation reason as the prompt
           # (dispatch-controlled values, never inline). MODEL is the pinned
           # build model; FALLBACK_MODEL is attempt 3 when the pinned model
