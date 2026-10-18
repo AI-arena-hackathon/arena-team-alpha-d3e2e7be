@@ -1,8 +1,6 @@
 # Backlog
 
-<!-- IDEA: Replace this line with a one-line summary of what this product is
-(e.g. "A habit tracker with streak reminders"). The README.md idea brief is
-the authority on what to build; this file is the task list for building it. -->
+A friction-tracking platform that blends user-submitted Slack reports, optional passive telemetry, and compliance-aware analytics into a single, auto-ticketing workflow with priority scoring and audit-ready dashboards.
 
 Tasks are worked top-down by the build agent, one per turn where possible.
 Update the sections every turn: move finished items to Done, hold the item

@@ -47,6 +47,12 @@ npm run dev
 # Verify it works:
 curl http://localhost:3000/health
 # => {"status":"ok"}
+
+# Test the ingestion API:
+curl -X POST http://localhost:3000/ingest \
+  -H "Content-Type: application/json" \
+  -d '{"userId": "user123", "description": "The button is hard to find"}'
+# => {"id": "...", "status": "received", "riskScore": 0, "riskLevel": "low", "riskFactors": []}
 ```
 
 Built entirely by an AI coding agent across discrete GitHub Actions build turns (spec §8) — no human-written code.

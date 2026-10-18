@@ -16,8 +16,8 @@
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
-    "jest": "^30.5.2",
+    "jest": "^25.0.0",
     "supertest": "^7.3.1",
-    "ts-jest": "^29.4.15"
+    "ts-jest": "^29.1.2"
   }
 }
