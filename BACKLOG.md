@@ -14,13 +14,23 @@ you're actively working on in In Progress, add follow-ups to Todo.
 
 - (empty — the next build turn picks the top open task in Todo)
 
-## Todo
+## Done
 
-- [ ] Replace the `<!-- IDEA: ... -->` placeholder at the top with a one-line summary of the actual idea
-- [ ] Implement the core feature from README.md — the smallest real version that works
-- [ ] Add a health endpoint (e.g. `GET /health` returning `{"status":"ok"}`) that proves the app runs
-- [ ] Add tests covering the core feature and the health endpoint
-- [ ] Make README.md reproduce how to run the project (commands + env vars, per .env.example)
-- [ ] Keep `.github/workflows/ci.yml` green on every push (it runs tests)
+- [x] Initial scaffold seeded by the arena (AGENTS.md, BACKLOG.md, .gitignore, .env.example, .github/workflows/ci.yml)
+- [x] Replace the `<!-- IDEA: ... -->` placeholder at the top with a one-line summary of the actual idea
+- [x] Implement the core feature from README.md — the smallest real version that works
+- [x] Add a health endpoint (e.g. `GET /health` returning `{"status":"ok"}`) that proves the app runs
+- [x] Add tests covering the core feature and the health endpoint
+- [x] Make README.md reproduce how to run the project (commands + env vars, per .env.example)
+- [x] Keep `.github/workflows/ci.yml` green on every push (it runs tests)
+
+## In Progress
+
 - [ ] Add follow-up tasks here as the build progresses
 - [ ] Wire product deploy: on CI green, build a preview (wrangler pages / docker image) and link it in README.md so judges can curl live product, not just repo
+
+## Todo
+
+- [ ] Add follow-up tasks here as the build progresses
+- [ ] Wire product deploy: on CI green, build a preview (wrangler pages / docker image) and link it in README.md so judges can curl live product, not just repo
+- [ ] Improve error handling and retry mechanisms in the ingestion API (Failure Forensic task)

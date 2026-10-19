@@ -1,6 +1,0 @@
-=== Build verification FAILED — turn team_222e7280-abf7-4cd0-9c6a-bc21acc49c46_turn2 ===
-Reported 2026-10-18T07:27:32Z
-This file is committed by the commit step so the next
-turn can see what broke. Fix the checks below, then rebuild.
-
-dependency install failed (install phase exit code 1) — see the Phase B install step log; build checks skipped

@@ -1,3 +1,4 @@
+<!-- IDEA: A friction‑tracking platform that blends user-submitted Slack reports, optional passive telemetry, and compliance-aware analytics into a single, auto-ticketing workflow with priority scoring and audit-ready dashboards. -->
 # Friction‑Track: Internal UX Auditing for Teams
 
 Team alpha — spec §3.2 hackathon build.
@@ -39,6 +40,10 @@ All pieces are version‑controlled in a single monorepo, enabling rapid rollbac
 ```bash
 # Install dependencies
 npm ci
+
+# Set up environment variables (copy .env.example to .env and customize)
+cp .env.example .env
+# Edit .env to set PORT and DATABASE_URL as needed
 
 # Start the development server
 npm run dev
