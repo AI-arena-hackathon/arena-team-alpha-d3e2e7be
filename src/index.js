@@ -1,4 +1,5 @@
 const express = require('express');
+const ingestionService = require('./services/ingestionService');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -6,16 +7,13 @@ const PORT = process.env.PORT || 3000;
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// In-memory storage for friction reports
-let frictionReports = [];
-
 // Health endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
 // Ingestion API endpoint for friction reports
-app.post('/ingest', (req, res) => {
+app.post('/ingest', async (req, res) => {
   const report = req.body;
   
   // Basic validation
@@ -67,17 +65,28 @@ app.post('/ingest', (req, res) => {
   reportWithMeta.riskFactors = riskFactors;
   reportWithMeta.riskLevel = riskScore >= 5 ? 'high' : riskScore >= 2 ? 'medium' : 'low';
   
-  // Store the report
-  frictionReports.push(reportWithMeta);
-  
-  // Return success response
-  res.status(201).json({
-    id: reportWithMeta.id,
-    status: 'received',
-    riskScore: reportWithMeta.riskScore,
-    riskLevel: reportWithMeta.riskLevel,
-    riskFactors: reportWithMeta.riskFactors
-  });
+  try {
+    // Process the report with retry mechanisms (storage and notification)
+    const result = await ingestionService.processReport(reportWithMeta);
+    
+    if (!result.success) {
+      // If processing failed after retries, return 500
+      return res.status(500).json({ error: result.error });
+    }
+    
+    // Return success response (same format as before)
+    res.status(201).json({
+      id: reportWithMeta.id,
+      status: 'received',
+      riskScore: reportWithMeta.riskScore,
+      riskLevel: reportWithMeta.riskLevel,
+      riskFactors: reportWithMeta.riskFactors
+    });
+  } catch (error) {
+    // Handle any unexpected errors
+    console.error('Unexpected error in ingestion API:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 // Only listen when run directly (not when imported as module)
